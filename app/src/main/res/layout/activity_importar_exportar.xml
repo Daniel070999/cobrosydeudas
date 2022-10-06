@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Importar_exportar">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toobarconfiguraciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/principal"
+        android:theme="@style/Toolbartheme"
+        app:titleTextColor="@color/black">
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp"
+        app:srcCompat="@drawable/copia_de_seguridad" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Es recomendable realizar una copia de seguridad de forma frecuente,
+en caso de cambiar de dispositivo asegurese de realizar la copia de seguridad para que no
+pierda sus datos."
+        android:textColor="@color/black"
+        android:textAlignment="viewStart"/>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnexportar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/atma_semibold"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/fondoOscuro"
+        android:text="Exportar"
+        android:layout_gravity="end"
+        android:textColor="@color/fondoOscuro"
+        app:cornerRadius="20dp"
+        android:textSize="10dp"
+        android:onClick="exportarCSV"/>
+    <Button
+        android:id="@+id/btnimportar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/atma_semibold"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/teal_700"
+        android:text="Importar"
+        android:layout_gravity="end"
+        android:textColor="@color/teal_700"
+        app:cornerRadius="20dp"
+        android:textSize="10dp"
+        android:onClick="importarCSV"/>
+</LinearLayout>
+</LinearLayout>

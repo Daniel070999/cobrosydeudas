@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/principal"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    tools:context=".Todos">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarcobro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/principal"
+        android:theme="@style/Toolbartheme"
+        app:titleTextColor="@color/black">
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnnuevocobro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/atma_semibold"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="#2E86C1"
+            android:text="NUEVO COBRO"
+            android:layout_gravity="end"
+            android:textColor="#2E86C1"
+            app:cornerRadius="20dp"
+            android:textSize="10dp"
+            android:onClick="agregarnuevocobro"/>
+        <Button
+            android:id="@+id/btnnuevadeuda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/atma_semibold"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="#1F618D"
+            android:text="NUEVA DEUDA"
+            android:layout_gravity="end"
+            android:textColor="#1F618D"
+            app:cornerRadius="20dp"
+            android:textSize="10dp"
+            android:onClick="agregarnuevadeuda"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/txtbuscarcobros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Buscar"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/ic_search_person"
+        android:textSize="16sp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="0dp"
+        android:singleLine="true"
+        />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewListacobros"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+</LinearLayout>

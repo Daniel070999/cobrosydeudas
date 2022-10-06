@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="50dp"
+    tools:context=".DarPermiso">
+
+    <TextView
+        android:id="@+id/txtclavepermiso"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:password="true"
+        android:text="" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Para tener acceso a la aplicación, por favor, comuniquese al correo:
+               danielixo99@gmail.com"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:layout_marginBottom="25dp"/>
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/btnabrircamara"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:fontFamily="@font/atma_semibold"
+        android:onClick="abrircamara"
+        android:text="Leer codigo QR"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/black" />
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/btnaceptarpermiso"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:fontFamily="@font/atma_semibold"
+        android:onClick="guardarpermiso"
+        android:text="Aceptar"
+        android:textColor="@color/aceptar"
+        android:textSize="12sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/aceptar" />
+    <Button
+        android:id="@+id/btnnuevocobro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:fontFamily="@font/atma_semibold"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="#C0392B"
+        android:text="enviar correo"
+        android:layout_gravity="end"
+        android:textColor="#E74C3C"
+        app:cornerRadius="20dp"
+        android:textSize="10dp"
+        android:onClick="enviarcorreoPermiso"/>
+</LinearLayout>

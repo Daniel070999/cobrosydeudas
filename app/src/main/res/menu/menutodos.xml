@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/itemsolocobros"
+        android:title="Ver solo cobros"/>
+
+    <item
+        android:id="@+id/itemsolodeudas"
+        android:title="Ver solo deudas"/>
+    <item
+        android:id="@+id/itemdatos"
+        android:title="Ver datos"/>
+    <item
+        android:id="@+id/itemconfiguraciones"
+        android:title="Copia de seguridad"/>
+    <item
+        android:id="@+id/itemacercade"
+        android:title="Acerca de la aplicación"/>
+</menu>

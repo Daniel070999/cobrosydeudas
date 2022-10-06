@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_gravity="center"
+    android:padding="25dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_check_circle_green_24dp" />
+
+    <TextView
+        android:id="@+id/txtnombrecarview"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="Acuerdos de uso"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="gravity"
+        android:text="- Para tener acceso completo a la aplicación deberá comunicarse al correo danielixo99@gmail.com para la respectiva activación.
+\n- La aplicación ha sido creada con el fin de poder llevar un control y registro de las deudas o cobros de forma personal, evite que la aplicación sea manipulada por terceras personas.
+\n- Trate de realizar una copia de seguridad de forma frecuente para evitar pérdidas de registros o en caso de cambio de dispositivo.
+\n- En caso de cambiar de dispositivo, por favor, vuelva a comunicarse al correo danielixo99@gmail.com
+\n- En caso de pérdida del dispositivo y sin tener una copia de seguridad, sus datos y registros no se podrán recuperar"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btnaceptaracuerdo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/atma_semibold"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="@color/aceptar"
+            android:text="aceptar"
+            android:layout_gravity="end"
+            android:textColor="@color/aceptar"
+            app:cornerRadius="20dp"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AcercadelaApp">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbaracercade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/principal"
+        android:theme="@style/Toolbartheme"
+        app:titleTextColor="@color/black">
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tesxtView8"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textAlignment="gravity"
+        android:text="Aplicación hecha por:"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/tesxtView8a"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textAlignment="gravity"
+        android:text="Daniel Patiño"
+        android:fontFamily="@font/atma_semibold"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textAlignment="gravity"
+        android:text="La aplicación ha sido creada con el fin de poder
+tener un control de todos los cobros y deudas que cualquier persona puede tener,
+la aplicación cuenta con diferentes acciones posibles, entre ellas estan:
+ \n - Estado 'Activo' o 'Vencido' dependiendo de la fecha fijada.
+ \n - Realiza copias de seguridad.
+ \n - Buscar en base al nombre o apellido.
+ \n - Lista Todos lo registros, Solo Cobros o Solo Deudas.
+ \n - Agregar un número de teléfono del cobro o deuda.
+ \n - Enviar mensaje de WhatsApp.
+ \n - Realizar llamadas.
+ \n - Modificar datos de un Cobro o deuda.
+ \n - Aumentar cantidad de dinero.
+ \n - Registrar un pago de dinero.
+ \n - Elimina un cobro o deuda con todos los datos y registros.
+"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/textVisew8"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textAlignment="gravity"
+        android:text="En caso de sugerir algun cambio o reportar un problema,
+por favor, comuniquese al correo 'danielixo99@gmail.com'
+"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/btnnuevocobro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginHorizontal="100dp"
+        android:fontFamily="@font/atma_semibold"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="#C0392B"
+        android:text="enviar correo"
+        android:layout_gravity="end"
+        android:textColor="#E74C3C"
+        app:cornerRadius="20dp"
+        android:textSize="10dp"
+        android:onClick="enviarcorreo"/>
+
+</LinearLayout>

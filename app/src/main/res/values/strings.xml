@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Cobros y Deudas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="spinner_cantidades">
+        <item>Seleccione</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>Otro...</item>
+    </string-array>
+</resources>
