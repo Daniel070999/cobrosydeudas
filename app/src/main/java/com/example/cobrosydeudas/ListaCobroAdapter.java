@@ -70,7 +70,10 @@ public class ListaCobroAdapter extends RecyclerView.Adapter<ListaCobroAdapter.Pe
             holder.estado.setTextColor(Color.parseColor("#229954"));
         }else if (estado.equals("Vencido")){
             holder.estado.setTextColor(Color.parseColor("#CB4335"));
+        }else if (estado.equals("Eliminado")){
+            holder.estado.setTextColor(Color.parseColor("#FA0505"));
         }
+
 
     }
 

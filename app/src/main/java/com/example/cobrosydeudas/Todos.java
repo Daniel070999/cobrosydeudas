@@ -387,6 +387,11 @@ public class Todos extends AppCompatActivity {
                 startActivity(intentdatos);
                 overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
                 break;
+            case R.id.itempapelera:
+                Intent intentpapelera = new Intent(this, Papelera.class);
+                startActivity(intentpapelera);
+                overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
+                break;
             case R.id.itemconfiguraciones:
                 Intent intentconfiguraciones = new Intent(this, Importar_exportar.class);
                 startActivity(intentconfiguraciones);

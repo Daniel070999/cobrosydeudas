@@ -616,22 +616,27 @@ public class DetallesCobro extends AppCompatActivity {
     }
     public void eliminarCobro(){
         msgregistroeliminado();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                String estado = "Eliminado";
                 SQLiteDatabase db = conn.getReadableDatabase();
                 listaCobro = new ArrayList<>();
                 Cobro usuario = null;
-                Cursor cursor = db.rawQuery("DELETE FROM " + Utilidades.TABLA_COBRO+ " WHERE " +Utilidades.CAMPO_ID + " = "+ idCobro, null);
+                Cursor cursor = db.rawQuery("UPDATE " + Utilidades.TABLA_COBRO+  " SET " + Utilidades.CAMPO_ESTADO+ " = " +
+                        "'"+estado+"'" +  " WHERE " +Utilidades.CAMPO_ID + " = " +
+                        ""+ idCobro, null);
                 while (cursor.moveToNext()) {
                     usuario = new Cobro();
                     listaCobro.add(usuario);
                 }
+                /*
                 Cursor cursoregistro = db.rawQuery("DELETE FROM " + Utilidades.TABLA_REGISTRO_COBRO+ " WHERE " +Utilidades.CAMPO_REGISTRO_IDCOBRO + " = "+ idCobro, null);
                 while (cursoregistro.moveToNext()) {
                     usuario = new Cobro();
                     listaCobro.add(usuario);
-                }
+                }*/
                 db.close();
 
                 Intent intent = new Intent(DetallesCobro.this, Todos.class);
