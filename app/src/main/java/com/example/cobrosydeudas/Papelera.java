@@ -22,10 +22,12 @@ import android.widget.TextView;
 import com.example.cobrosydeudas.entidades.Cobro;
 import com.example.cobrosydeudas.entidades.RegistrodeCobro;
 import com.example.cobrosydeudas.utilidades.Utilidades;
+import com.thecode.aestheticdialogs.AestheticDialog;
 import com.thecode.aestheticdialogs.DialogAnimation;
 import com.thecode.aestheticdialogs.DialogStyle;
 import com.thecode.aestheticdialogs.DialogType;
 
+import java.io.Console;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,7 +41,9 @@ public class Papelera extends AppCompatActivity {
     ArrayList<Cobro> listaCobroEliminado;
     BDDcobrosHelper conn;
     ArrayList<Cobro> listaCobro;
-
+    DialogStyle dialogStyle;
+    DialogType dialogType;
+    DialogAnimation dialogAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,30 @@ public class Papelera extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerviewListapapelera);
 
         cargarListaPapelera();
+    }
+
+    private void msgeliminado() {
+        dialogStyle = DialogStyle.TOASTER;
+        dialogType = DialogType.ERROR;
+        dialogAnimation = DialogAnimation.IN_OUT;
+        AestheticDialog.Builder builder = new AestheticDialog.Builder(this, dialogStyle, dialogType);
+        builder.setTitle("Eliminado");
+        builder.setMessage("El registro fue eliminado permanentemente");
+        builder.setDuration(2000);
+        builder.setAnimation(dialogAnimation);
+        builder.show();
+    }
+
+    private void msgrestaurado() {
+        dialogStyle = DialogStyle.TOASTER;
+        dialogType = DialogType.SUCCESS;
+        dialogAnimation = DialogAnimation.IN_OUT;
+        AestheticDialog.Builder builder = new AestheticDialog.Builder(this, dialogStyle, dialogType);
+        builder.setTitle("Restaurado");
+        builder.setMessage("El registro fue restaurado exitosamente");
+        builder.setDuration(2000);
+        builder.setAnimation(dialogAnimation);
+        builder.show();
     }
 
     public void cargarListaPapelera() {
@@ -81,9 +109,6 @@ public class Papelera extends AppCompatActivity {
                 Integer idcobro = listaCobroEliminado.get(recyclerView.getChildAdapterPosition(view)).getId();
                 String fecharegistrada = listaCobroEliminado.get(recyclerView.getChildAdapterPosition(view)).getFechacobro();
                 String nombreusuario = listaCobroEliminado.get(recyclerView.getChildAdapterPosition(view)).getNombre();
-                String apellidousuario = listaCobroEliminado.get(recyclerView.getChildAdapterPosition(view)).getApellido();
-
-
 
                 Dialog dialog;
                 dialog = new Dialog(Papelera.this);
@@ -97,7 +122,7 @@ public class Papelera extends AppCompatActivity {
                 dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
                 dialog.show();
 
-                usuario.setText(nombreusuario + "" +apellidousuario);
+                usuario.setText(nombreusuario);
 
                 eliminar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -122,42 +147,58 @@ public class Papelera extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
     public void restaurar(Integer idCobro, String fecha){
-        try {
-            String estado = null;
-            Date fecharegistrada = null;
-            Date fechaactual = null;
-            DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaactualuno = String.valueOf(android.text.format.DateFormat.format("dd/MM/yyyy", new java.util.Date()));
 
-            fechaactual = format.parse(fechaactualuno);
-            fecharegistrada = format.parse(fecha);
+        msgrestaurado();
 
-            if (fecharegistrada.compareTo(fechaactual) <= 0){
-                estado = "Vencido";
-            }else if(fecharegistrada.compareTo(fechaactual) > 0){
-                estado = "Activo";
-            }
-                SQLiteDatabase db = conn.getReadableDatabase();
-                listaCobro = new ArrayList<>();
-                Cobro usuario = null;
-                Cursor cursor = db.rawQuery("UPDATE " + Utilidades.TABLA_COBRO+  " SET " + Utilidades.CAMPO_ESTADO+ " = " +
-                        "'"+estado+"'" +  " WHERE " +Utilidades.CAMPO_ID + " = " +
-                        ""+ idCobro, null);
-                while (cursor.moveToNext()) {
-                    usuario = new Cobro();
-                    listaCobro.add(usuario);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    String estado = null;
+                    Date fecharegistrada = null;
+                    Date fechaactual = null;
+                    DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaactualuno = String.valueOf(android.text.format.DateFormat.format("dd/MM/yyyy", new java.util.Date()));
+
+                    fechaactual = format.parse(fechaactualuno);
+                    fecharegistrada = format.parse(fecha);
+
+                    if (fecharegistrada.compareTo(fechaactual) <= 0){
+                        estado = "Vencido";
+                    }else if(fecharegistrada.compareTo(fechaactual) > 0){
+                        estado = "Activo";
+                    }
+                    SQLiteDatabase db = conn.getReadableDatabase();
+                    listaCobro = new ArrayList<>();
+                    Cobro usuario = null;
+                    Cursor cursor = db.rawQuery("UPDATE " + Utilidades.TABLA_COBRO+  " SET " + Utilidades.CAMPO_ESTADO+ " = " +
+                            "'"+estado+"'" +  " WHERE " +Utilidades.CAMPO_ID + " = " +
+                            ""+ idCobro, null);
+                    while (cursor.moveToNext()) {
+                        usuario = new Cobro();
+                        listaCobro.add(usuario);
+                    }
+                    db.close();
+
+                    Intent intent = new Intent(Papelera.this, Todos.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-                db.close();
-
-                Intent intent = new Intent(Papelera.this, Todos.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            }
+        },2000);
     }
     public void eliminarCobro(Integer idcobro){
-        String idCobro = idcobro.toString();
+
+        msgeliminado();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                String idCobro = idcobro.toString();
 
                 SQLiteDatabase db = conn.getReadableDatabase();
                 listaCobro = new ArrayList<>();
@@ -179,6 +220,10 @@ public class Papelera extends AppCompatActivity {
                 Intent intent = new Intent(Papelera.this, Todos.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
+            }
+        },2000);
+
+
 
     }
 

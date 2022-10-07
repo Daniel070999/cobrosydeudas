@@ -116,7 +116,7 @@ public class DetallesCobro extends AppCompatActivity {
     private void msgnohaynumero() {
         dialogStyle = DialogStyle.TOASTER;
         dialogType = DialogType.ERROR;
-        dialogAnimation = DialogAnimation.DIAGONAL;
+        dialogAnimation = DialogAnimation.IN_OUT;
         AestheticDialog.Builder builder = new AestheticDialog.Builder(this, dialogStyle, dialogType);
         builder.setTitle("Error");
         builder.setMessage("No hay un número registrado");

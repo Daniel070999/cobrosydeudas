@@ -34,7 +34,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Si elimina, se elminaran todos los datos y registros almacenados"
+        android:text="Los registros eliminados serán almacenados en la PAPELERA hasta que sean eliminados definitivamente"
         android:textColor="@color/black"/>
 
     <LinearLayout
