@@ -347,7 +347,7 @@
                 android:onClick="aumentarcantidad"
                 android:text="Aumentar cantidad"
                 android:textColor="#28B463"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 app:cornerRadius="20dp"
                 app:strokeColor="#2ECC71" />
 
@@ -362,9 +362,9 @@
                 android:drawableLeft="@drawable/ic_agregar_pago"
                 android:fontFamily="@font/atma_semibold"
                 android:onClick="registrarnuevopago"
-                android:text="Registrar un nuevo pago"
+                android:text="Registrar pago"
                 android:textColor="#229954"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 app:cornerRadius="20dp"
                 app:strokeColor="#196F3D" />
 
@@ -384,7 +384,7 @@
             android:onClick="modificardatoscobro"
             android:text="Modificar datos"
             android:textColor="#F39C12"
-            android:textSize="12sp"
+            android:textSize="11sp"
             app:cornerRadius="20dp"
             app:strokeColor="#D68910" />
     </LinearLayout>

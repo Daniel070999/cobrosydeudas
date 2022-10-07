@@ -525,7 +525,7 @@ public class DetallesCobro extends AppCompatActivity {
                         String fecha = dayOfMonth + "/" + (month + 1) + "/" + year;
                         calendariodialog.setText(fecha);
                     }
-                }, 2021, mes, dia);
+                }, anio, mes, dia);
                 datePickerDialog.show();
             }
         });

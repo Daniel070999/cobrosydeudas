@@ -48,6 +48,8 @@ import com.thecode.aestheticdialogs.DialogType;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Year;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -197,7 +199,11 @@ public class Todos extends AppCompatActivity {
         Cobro usuario = null;
         String id = null;
         String tip = null;
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_COBRO, null);
+        String estadoActivo = "Activo";
+        String estadoVencido = "Vencido";
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_COBRO
+                + " WHERE " + Utilidades.CAMPO_ESTADO + " = " + "'" + estadoActivo + "'" + " OR "
+                + Utilidades.CAMPO_ESTADO + " = " + "'" + estadoVencido + "'"  , null);
         while (cursor.moveToNext()) {
             usuario = new Cobro();
             id = usuario.setId(cursor.getInt(cursor.getColumnIndex("id")));
@@ -476,7 +482,7 @@ public class Todos extends AppCompatActivity {
 
 
                     }
-                }, 2021, mes, dia);
+                }, anio, mes, dia);
                 datePickerDialog.show();
             }
         });
@@ -608,7 +614,7 @@ public class Todos extends AppCompatActivity {
                         String fecha = dayOfMonth + "/" + (month + 1) + "/" + year;
                         calendario.setText(fecha);
                     }
-                }, 2021, mes, dia);
+                }, anio, mes, dia);
                 datePickerDialog.show();
             }
         });
