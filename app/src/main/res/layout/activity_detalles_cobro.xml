@@ -370,14 +370,18 @@
 
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
         <Button
             android:layout_gravity="center"
             android:id="@+id/btnmodificardatoscobro"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="75dp"
-            android:layout_marginRight="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_editar"
             android:fontFamily="@font/atma_semibold"
@@ -387,6 +391,24 @@
             android:textSize="11sp"
             app:cornerRadius="20dp"
             app:strokeColor="#D68910" />
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/btngenerarreporte"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_pdf"
+                android:fontFamily="@font/atma_semibold"
+                android:onClick="generarreportePDF"
+                android:text="Generar reporte"
+                android:textColor="#D72A2A"
+                android:textSize="11sp"
+                app:cornerRadius="20dp"
+                app:strokeColor="#D72A2A" />
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

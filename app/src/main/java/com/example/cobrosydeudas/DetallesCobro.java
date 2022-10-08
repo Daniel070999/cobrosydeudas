@@ -614,6 +614,11 @@ public class DetallesCobro extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void generarreportePDF(View view) {
+        Toast.makeText(this, "Generacion de reporte", Toast.LENGTH_SHORT).show();
+    }
+    
     public void eliminarCobro(){
         msgregistroeliminado();
 
@@ -721,4 +726,5 @@ public class DetallesCobro extends AppCompatActivity {
     }
 
 
+    
 }
