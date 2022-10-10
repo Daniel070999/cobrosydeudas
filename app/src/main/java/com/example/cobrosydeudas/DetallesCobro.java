@@ -809,7 +809,7 @@ public class DetallesCobro extends AppCompatActivity {
         int y4 = 145;
         int y5 = 153;
         int y7 = 120;
-        lineaPDF.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        lineaPDF.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         lineaPDF.setTextSize(11);
         canvas.drawText("------------------------------------------------------------------------------------------------------------------------------------------------------"
                 , 60, y7, lineaPDF);
