@@ -21,6 +21,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
@@ -72,6 +73,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class DetallesCobro extends AppCompatActivity {
 
@@ -200,6 +202,7 @@ public class DetallesCobro extends AppCompatActivity {
         estadoD = findViewById(R.id.txtestadodetallecobro);
         conn = new BDDcobrosHelper(this, "bd_cobros", null, 1);
         recyclerViewregistro = (RecyclerView) findViewById(R.id.recyclerviewListaRegistro);
+        listaregistrocobro = new ArrayList<>();
     }
 
     public void  llenarCampos(){
@@ -739,49 +742,237 @@ public class DetallesCobro extends AppCompatActivity {
     }
 
     public void generarPDF(){
-
-        String tituloText = "Registros de ";
-        String descripcionTexto = "Yo os las entrego tales como son, en su frescor de carne y de rosa. Sólo existe un método honrado y lógico de traducción: la «literalidad», una literalidad impersonal, apenas atenuada por un leve parpadeo y una ligera sonrisa del traductor. Ella crea, sugestiva, la más grande potencia literaria. Ella produce el placer de la evocación. Ella es la garantía de la verdad. Ella es firme e inmutable, en su desnudez de piedra. Ella cautiva el aroma primitivo y lo cristaliza. Ella separa y desata... Ella fija.";
         PdfDocument pdfDocument = new PdfDocument();
+        String fechaTexto = "";
+        String tituloText = "Registros de ";
+
+
         Paint paint = new Paint();
         TextPaint tituloPDF = new TextPaint();
-        TextPaint descripcionPDF = new TextPaint();
+        TextPaint fechaPDFdatos = new TextPaint();
+        TextPaint cantidadaumentadaPDFdatos = new TextPaint();
+        TextPaint nuevacantidadaumentadaPDFdatos = new TextPaint();
+        TextPaint accionPDFdatos = new TextPaint();
+        TextPaint descripcionPDFdatos = new TextPaint();
+        TextPaint lineaPDF = new TextPaint();
+
+
+
+        ArrayList arrayListCantidadAumentadaPDF = new ArrayList();
+        ArrayList arrayListNuevaCantidadAumentadaPDF = new ArrayList();
+        ArrayList arrayListDescripcionPDF = new ArrayList();
+        ArrayList arrayListFechaPDF = new ArrayList();
+        ArrayList arrayListAccionPDF = new ArrayList();
+
+        Bundle bundle = this.getIntent().getExtras();
+        idCobro = bundle.getString("iddetalle");
+        conn = new BDDcobrosHelper(this, "bd_cobros", null, 1);
+        SQLiteDatabase db = conn.getReadableDatabase();
+        RegistrodeCobro usuario = null;
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_REGISTRO_COBRO +" WHERE "+ Utilidades.CAMPO_REGISTRO_IDCOBRO + " = "+ idCobro+ " ORDER BY "+Utilidades.CAMPO_REGISTRO_ID+ " DESC ", null);
+        while (cursor.moveToNext()) {
+            usuario = new RegistrodeCobro();
+            usuario.setCantidadaumentada(cursor.getString(cursor.getColumnIndex(Utilidades.CAMPO_REGISTRO_CANTIDADAUMENTADA)));
+            usuario.setNuevacantidadaumentada(cursor.getString(cursor.getColumnIndex(Utilidades.CAMPO_REGISTRO_NUEVACANTIDADAUMENTADA)));
+            usuario.setDescripcionaumento(cursor.getString(cursor.getColumnIndex(Utilidades.CAMPO_REGISTRO_DESCRIPCIONAUMENTO)));
+            usuario.setFechaaumentada(cursor.getString(cursor.getColumnIndex(Utilidades.CAMPO_REGISTRO_FECHAAUMENTADA)));
+            usuario.setAccionregistro(cursor.getString(cursor.getColumnIndex(Utilidades.CAMPO_REGISTRO_ACCIONREGISTRO)));
+            arrayListCantidadAumentadaPDF.add(usuario.getCantidadaumentada());
+            arrayListNuevaCantidadAumentadaPDF.add(usuario.getNuevacantidadaumentada());
+            arrayListDescripcionPDF.add(usuario.getDescripcionaumento());
+            arrayListFechaPDF.add(usuario.getFechaaumentada());
+            arrayListAccionPDF.add(usuario.getAccionregistro());
+        }
+
+        System.out.println(arrayListFechaPDF);
 
         Bitmap bitmap, bitmapEscala;
 
-        PdfDocument.PageInfo paginaInfo = new PdfDocument.PageInfo.Builder(595,842,2).create();
+        PdfDocument.PageInfo paginaInfo = new PdfDocument.PageInfo.Builder(595,842,1).create();
         PdfDocument.Page pagina1 = pdfDocument.startPage(paginaInfo);
 
         Canvas canvas = pagina1.getCanvas();
+
 
         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_iconodos_app);
         bitmapEscala = Bitmap.createScaledBitmap(bitmap,60,60,false);
         canvas.drawBitmap(bitmapEscala,50,30,paint);
 
         tituloPDF.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        tituloPDF.setTextSize(16);
-        canvas.drawText(tituloText+nombre+" "+apellido, 150,60,tituloPDF);
+        tituloPDF.setTextSize(20);
+        canvas.drawText(tituloText+nombre+" "+apellido+" ("+descripcion+")", 150,70,tituloPDF);
 
-        descripcionPDF.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-        descripcionPDF.setTextSize(12);
-        canvas.drawText(descripcionTexto, 50, 130, descripcionPDF);
+        int y = 130;
+        int y1 = 130;
+        int y2 = 130;
+        int y3 = 130;
+        int y4 = 145;
+        int y5 = 153;
+        int y7 = 120;
+        lineaPDF.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        lineaPDF.setTextSize(11);
+        canvas.drawText("------------------------------------------------------------------------------------------------------------------------------------------------------"
+                , 60, y7, lineaPDF);
+
+        if (arrayListFechaPDF.size() >19){
+            for (int i = arrayListFechaPDF.size()-1 ; i >= arrayListFechaPDF.size()-19 ; i--){
+                fechaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
+                fechaPDFdatos.setTextSize(11);
+                canvas.drawText(arrayListFechaPDF.get(i) +" "
+                        , 70, y, fechaPDFdatos);
+                y = y +35;
+                accionPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                accionPDFdatos.setTextSize(11);
+                canvas.drawText(arrayListAccionPDF.get(i) +" "
+                        , 200, y1, accionPDFdatos);
+                y1 = y1 +35;
+                cantidadaumentadaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                cantidadaumentadaPDFdatos.setTextSize(11);
+                canvas.drawText(arrayListCantidadAumentadaPDF.get(i) +" "
+                        , 345, y2, cantidadaumentadaPDFdatos);
+                y2 = y2 +35;
+                nuevacantidadaumentadaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                nuevacantidadaumentadaPDFdatos.setTextSize(11);
+                canvas.drawText("Saldo: "+arrayListNuevaCantidadAumentadaPDF.get(i)
+                        , 425, y3, nuevacantidadaumentadaPDFdatos);
+                y3 = y3 +35;
+
+                descripcionPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                descripcionPDFdatos.setTextSize(11);
+                canvas.drawText("Descripción: "+arrayListDescripcionPDF.get(i)
+                        , 70, y4, descripcionPDFdatos);
+                y4 = y4 +35;
+                lineaPDF.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                lineaPDF.setTextSize(11);
+                canvas.drawText("------------------------------------------------------------------------------------------------------------------------------------------------------"
+                        , 60, y5, lineaPDF);
+                y5 = y5 +35;
+            }
+        }else{
+            for (int i = arrayListFechaPDF.size()-1 ; i >= 0 ; i--){
+                fechaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
+                fechaPDFdatos.setTextSize(11);
+                canvas.drawText(arrayListFechaPDF.get(i) +" "
+                        , 70, y, fechaPDFdatos);
+                y = y +35;
+                accionPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                accionPDFdatos.setTextSize(11);
+                canvas.drawText(arrayListAccionPDF.get(i) +" "
+                        , 200, y1, accionPDFdatos);
+                y1 = y1 +35;
+                cantidadaumentadaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                cantidadaumentadaPDFdatos.setTextSize(11);
+                canvas.drawText(arrayListCantidadAumentadaPDF.get(i) +" "
+                        , 345, y2, cantidadaumentadaPDFdatos);
+                y2 = y2 +35;
+                nuevacantidadaumentadaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                nuevacantidadaumentadaPDFdatos.setTextSize(11);
+                canvas.drawText("Saldo: "+arrayListNuevaCantidadAumentadaPDF.get(i)
+                        , 425, y3, nuevacantidadaumentadaPDFdatos);
+                y3 = y3 +35;
+
+                descripcionPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                descripcionPDFdatos.setTextSize(11);
+                canvas.drawText("Descripción: "+arrayListDescripcionPDF.get(i)
+                        , 70, y4, descripcionPDFdatos);
+                y4 = y4 +35;
+                lineaPDF.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                lineaPDF.setTextSize(11);
+                canvas.drawText("------------------------------------------------------------------------------------------------------------------------------------------------------"
+                        , 60, y5, lineaPDF);
+                y5 = y5 +35;
+            }
+        }
+
 
         pdfDocument.finishPage(pagina1);
 
+// otra pagina
+
+        if (arrayListFechaPDF.size() >19){
+            PdfDocument.PageInfo paginaInfo2 = new PdfDocument.PageInfo.Builder(595,842,2).create();
+            PdfDocument.Page pagina2 = pdfDocument.startPage(paginaInfo2);
+
+            Canvas canvas2 = pagina2.getCanvas();
+
+
+
+            int yy1 = 80;
+            int yy2 = 80;
+            int yy3 = 80;
+            int yy4 = 80;
+            int yy5 = 95;
+            int yy6 = 103;
+            int yy7 = 70;
+
+            lineaPDF.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+            lineaPDF.setTextSize(11);
+            canvas2.drawText("------------------------------------------------------------------------------------------------------------------------------------------------------"
+                    , 60, yy7, lineaPDF);
+
+
+            for (int i = arrayListFechaPDF.size()-20 ; i >= 0 ; i--){
+                fechaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
+                fechaPDFdatos.setTextSize(11);
+                canvas2.drawText(arrayListFechaPDF.get(i) +" "
+                        , 70, yy1, fechaPDFdatos);
+                yy1 = yy1 +35;
+                accionPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                accionPDFdatos.setTextSize(11);
+                canvas2.drawText(arrayListAccionPDF.get(i) +" "
+                        , 200, yy2, accionPDFdatos);
+                yy2 = yy2 +35;
+                cantidadaumentadaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                cantidadaumentadaPDFdatos.setTextSize(11);
+                canvas2.drawText(arrayListCantidadAumentadaPDF.get(i) +" "
+                        , 345, yy3, cantidadaumentadaPDFdatos);
+                yy3 = yy3 +35;
+                nuevacantidadaumentadaPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                nuevacantidadaumentadaPDFdatos.setTextSize(11);
+                canvas2.drawText("Saldo: "+arrayListNuevaCantidadAumentadaPDF.get(i)
+                        , 425, yy4, nuevacantidadaumentadaPDFdatos);
+                yy4 = yy4 +35;
+
+                descripcionPDFdatos.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                descripcionPDFdatos.setTextSize(11);
+                canvas2.drawText("Descripción: "+arrayListDescripcionPDF.get(i)
+                        , 70, yy5, descripcionPDFdatos);
+                yy5 = yy5 +35;
+                lineaPDF.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                lineaPDF.setTextSize(11);
+                canvas2.drawText("------------------------------------------------------------------------------------------------------------------------------------------------------"
+                        , 60, yy6, lineaPDF);
+                yy6 = yy6 +35;
+            }
+            pdfDocument.finishPage(pagina2);
+        }
+
+
         File file = new File(getExternalFilesDir(null),"/reporte_"+nombre+".pdf");
-        Toast.makeText(this, "El reporte fue creado en "+file, Toast.LENGTH_LONG).show();
+        msgPDFcreado(file);
+
 
         try {
             pdfDocument.writeTo(new FileOutputStream(file));
+            pdfDocument.close();
         }catch (Exception e){
             System.out.println("error"+e);
         }
-        pdfDocument.close();
+
 
     }
 
+    private void msgPDFcreado(File carpeta) {
 
-
+        dialogStyle = DialogStyle.FLAT;
+        dialogType = DialogType.SUCCESS;
+        dialogAnimation = DialogAnimation.SWIPE_LEFT;
+        AestheticDialog.Builder builder = new AestheticDialog.Builder(this, dialogStyle, dialogType);
+        builder.setTitle("Registro creado");
+        builder.setMessage("Se creó un PDF con los registros en: " + carpeta);
+        builder.setAnimation(dialogAnimation);
+        builder.show();
+    }
 
     public boolean checkPermission(){
         int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(),WRITE_EXTERNAL_STORAGE);
@@ -814,6 +1005,7 @@ public class DetallesCobro extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         super.onBackPressed();
         Intent intent = new Intent(this, Todos.class);
         startActivity(intent);

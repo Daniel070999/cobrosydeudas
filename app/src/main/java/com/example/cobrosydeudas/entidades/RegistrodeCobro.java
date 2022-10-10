@@ -43,8 +43,9 @@ public class RegistrodeCobro implements Serializable {
         return cantidadaumentada;
     }
 
-    public void setCantidadaumentada(String cantidadaumentada) {
+    public String setCantidadaumentada(String cantidadaumentada) {
         this.cantidadaumentada = cantidadaumentada;
+        return cantidadaumentada;
     }
 
     public String getFechaaumentada() {
