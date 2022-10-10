@@ -403,7 +403,7 @@
                 android:drawableLeft="@drawable/ic_pdf"
                 android:fontFamily="@font/atma_semibold"
                 android:onClick="generarreportePDF"
-                android:text="Generar reporte"
+                android:text="Generar PDF"
                 android:textColor="#D72A2A"
                 android:textSize="11sp"
                 app:cornerRadius="20dp"

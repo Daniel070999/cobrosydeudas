@@ -4,22 +4,35 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.icu.number.Precision;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.text.Editable;
+import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,11 +60,11 @@ import com.thecode.aestheticdialogs.DialogAnimation;
 import com.thecode.aestheticdialogs.DialogStyle;
 import com.thecode.aestheticdialogs.DialogType;
 
-import org.w3c.dom.Text;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -77,6 +90,7 @@ public class DetallesCobro extends AppCompatActivity {
     DialogAnimation dialogAnimation;
     Spinner spinner_aumentarcantidad;
     Spinner spinner_registrarpago;
+    
 
     String nombre = null;
     String apellido = null;
@@ -85,6 +99,8 @@ public class DetallesCobro extends AppCompatActivity {
     String descripcion = null;
     String estado = null;
     String contactos = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +117,7 @@ public class DetallesCobro extends AppCompatActivity {
         cargarValores();
         llenarCampos();
     }
+
 
     private void msgregistroeliminado() {
         dialogStyle = DialogStyle.TOASTER;
@@ -615,10 +632,10 @@ public class DetallesCobro extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void generarreportePDF(View view) {
-        Toast.makeText(this, "Generacion de reporte", Toast.LENGTH_SHORT).show();
-    }
-    
+
+
+
+
     public void eliminarCobro(){
         msgregistroeliminado();
 
@@ -636,12 +653,6 @@ public class DetallesCobro extends AppCompatActivity {
                     usuario = new Cobro();
                     listaCobro.add(usuario);
                 }
-                /*
-                Cursor cursoregistro = db.rawQuery("DELETE FROM " + Utilidades.TABLA_REGISTRO_COBRO+ " WHERE " +Utilidades.CAMPO_REGISTRO_IDCOBRO + " = "+ idCobro, null);
-                while (cursoregistro.moveToNext()) {
-                    usuario = new Cobro();
-                    listaCobro.add(usuario);
-                }*/
                 db.close();
 
                 Intent intent = new Intent(DetallesCobro.this, Todos.class);
@@ -717,6 +728,90 @@ public class DetallesCobro extends AppCompatActivity {
         }
     }
 
+    public void generarreportePDF(View view) {
+
+        if (checkPermission()){
+            generarPDF();
+        }else{
+            requestPermissions();
+        }
+
+    }
+
+    public void generarPDF(){
+
+        String tituloText = "Registros de ";
+        String descripcionTexto = "Yo os las entrego tales como son, en su frescor de carne y de rosa. Sólo existe un método honrado y lógico de traducción: la «literalidad», una literalidad impersonal, apenas atenuada por un leve parpadeo y una ligera sonrisa del traductor. Ella crea, sugestiva, la más grande potencia literaria. Ella produce el placer de la evocación. Ella es la garantía de la verdad. Ella es firme e inmutable, en su desnudez de piedra. Ella cautiva el aroma primitivo y lo cristaliza. Ella separa y desata... Ella fija.";
+        PdfDocument pdfDocument = new PdfDocument();
+        Paint paint = new Paint();
+        TextPaint tituloPDF = new TextPaint();
+        TextPaint descripcionPDF = new TextPaint();
+
+        Bitmap bitmap, bitmapEscala;
+
+        PdfDocument.PageInfo paginaInfo = new PdfDocument.PageInfo.Builder(595,842,2).create();
+        PdfDocument.Page pagina1 = pdfDocument.startPage(paginaInfo);
+
+        Canvas canvas = pagina1.getCanvas();
+
+        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_iconodos_app);
+        bitmapEscala = Bitmap.createScaledBitmap(bitmap,60,60,false);
+        canvas.drawBitmap(bitmapEscala,50,30,paint);
+
+        tituloPDF.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        tituloPDF.setTextSize(16);
+        canvas.drawText(tituloText+nombre+" "+apellido, 150,60,tituloPDF);
+
+        descripcionPDF.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        descripcionPDF.setTextSize(12);
+        canvas.drawText(descripcionTexto, 50, 130, descripcionPDF);
+
+        pdfDocument.finishPage(pagina1);
+
+        File file = new File(getExternalFilesDir(null),"/reporte_"+nombre+".pdf");
+        Toast.makeText(this, "El reporte fue creado en "+file, Toast.LENGTH_LONG).show();
+
+        try {
+            pdfDocument.writeTo(new FileOutputStream(file));
+        }catch (Exception e){
+            System.out.println("error"+e);
+        }
+        pdfDocument.close();
+
+    }
+
+
+
+
+    public boolean checkPermission(){
+        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(),WRITE_EXTERNAL_STORAGE);
+        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(),READ_EXTERNAL_STORAGE);
+        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+
+    }
+
+    public void requestPermissions(){
+        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE},200);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grandResults){
+        if (requestCode == 200){
+            if (grandResults.length > 0){
+                boolean writeStorage = grandResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean readStorage = grandResults[1] == PackageManager.PERMISSION_GRANTED;
+
+                if (writeStorage && readStorage){
+                    Toast.makeText(this, "Permiso concedido", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "Permiso Denegado", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        }
+    }
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -726,5 +821,5 @@ public class DetallesCobro extends AppCompatActivity {
     }
 
 
-    
+
 }

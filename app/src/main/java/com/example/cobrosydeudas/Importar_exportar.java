@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -67,6 +68,7 @@ public class Importar_exportar extends AppCompatActivity {
     }
 
     private void msgdatosexportados(File carpeta) {
+
         dialogStyle = DialogStyle.FLAT;
         dialogType = DialogType.SUCCESS;
         dialogAnimation = DialogAnimation.SWIPE_LEFT;
@@ -198,7 +200,6 @@ public class Importar_exportar extends AppCompatActivity {
 
     public void importarCSV() {
         BDDcobrosHelper conn = new BDDcobrosHelper(this, "bd_cobros", null, 1);
-        ;
         SQLiteDatabase dbcon = conn.getReadableDatabase();
         Cobro usuario = null;
         Cursor cursor = dbcon.rawQuery("SELECT * FROM " + Utilidades.TABLA_COBRO, null);
