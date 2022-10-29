@@ -33,7 +33,7 @@
         android:layout_margin="15dp"
         android:justificationMode="inter_word"
         android:text="
-la aplicación cuenta con diferentes acciones posibles, entre ellas estan:
+la aplicación cuenta con diferentes acciones posibles, entre ellas están:
  \n - Estado 'Activo', 'Vencido' o 'Eliminado' dependiendo de
 la fecha fijada o si se encuentra en la papelera de reciclaje.
 \n
