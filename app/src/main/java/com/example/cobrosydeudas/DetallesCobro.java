@@ -736,11 +736,11 @@ public class DetallesCobro extends AppCompatActivity {
 
     public void generarreportePDF(View view) {
 
-        if (checkPermission()){
+        //if (checkPermission()){
             generarPDF();
-        }else{
-            requestPermissions();
-        }
+       // }else{
+           // requestPermissions();
+      //  }
 
     }
 

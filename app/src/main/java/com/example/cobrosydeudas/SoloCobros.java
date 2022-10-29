@@ -176,10 +176,21 @@ public class SoloCobros extends AppCompatActivity {
         SQLiteDatabase db = conn.getReadableDatabase();
         listaCobro = new ArrayList<>();
         String solocobro = "Cobro";
+        String estadoActivo = "Activo";
+        String estadoVencido = "Vencido";
         Cobro usuario = null;
         String id = null;
         String tip = null;
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_COBRO +" WHERE "+Utilidades.CAMPO_TIPO+ " = '"+solocobro+"'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM "
+                + Utilidades.TABLA_COBRO
+                +" WHERE "
+                +Utilidades.CAMPO_TIPO
+                + " = '"+solocobro+"'"
+                + "AND (("
+                +Utilidades.CAMPO_ESTADO
+                + " = 'Activo') OR ( "
+                + Utilidades.CAMPO_ESTADO
+                +" = ' Vencido'))", null);
         while (cursor.moveToNext()) {
             usuario = new Cobro();
             id = usuario.setId(cursor.getInt(cursor.getColumnIndex("id")));

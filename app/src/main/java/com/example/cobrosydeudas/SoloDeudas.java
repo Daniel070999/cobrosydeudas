@@ -176,7 +176,16 @@ public class SoloDeudas extends AppCompatActivity {
         Cobro usuario = null;
         String id = null;
         String tip = null;
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_COBRO +" WHERE "+Utilidades.CAMPO_TIPO+ " = '"+solodeuda+"'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM "
+                + Utilidades.TABLA_COBRO
+                +" WHERE "
+                +Utilidades.CAMPO_TIPO
+                + " = '"+solodeuda+"'"
+                + "AND ("
+                +Utilidades.CAMPO_ESTADO
+                + " = 'Activo' OR  "
+                + Utilidades.CAMPO_ESTADO
+                +" = ' Vencido')", null);
         while (cursor.moveToNext()) {
             usuario = new Cobro();
             id = usuario.setId(cursor.getInt(cursor.getColumnIndex("id")));
