@@ -223,7 +223,7 @@ public class SoloCobros extends AppCompatActivity {
             if (cursor != null && cursor.moveToFirst()){
                 int indiceNumero = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 String numero = cursor.getString(indiceNumero);
-                numero = numero.replace("+593", "0").replace(" ", "");
+                //numero = numero.replace("+593", "0").replace(" ", "");
                 contactoscobros.setText(numero);
             }
         }

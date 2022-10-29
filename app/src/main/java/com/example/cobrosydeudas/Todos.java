@@ -533,7 +533,7 @@ public class Todos extends AppCompatActivity {
             if (cursor != null && cursor.moveToFirst()){
                 int indiceNumero = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 String numero = cursor.getString(indiceNumero);
-                numero = numero.replace("+593", "0").replace(" ", "");
+                //numero = numero.replace("+593", "").replace(" ", "");
                 contactoscobros.setText(numero);
             }
         }else if (requestCode == 2 && resultCode == RESULT_OK){
@@ -542,7 +542,7 @@ public class Todos extends AppCompatActivity {
             if (cursor != null && cursor.moveToFirst()){
                 int indiceNumero = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 String numero = cursor.getString(indiceNumero);
-                numero = numero.replace("+593", "0").replace(" ", "");
+                //numero = numero.replace("+593", "0").replace(" ", "");
                 contactosdeudas.setText(numero);
             }
         }

@@ -10,10 +10,12 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -114,6 +116,7 @@ public class DetallesCobro extends AppCompatActivity {
         toolbar.setTitle("Detalles de "+tip);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         listarRegistros();
         cargarValores();
@@ -591,7 +594,7 @@ public class DetallesCobro extends AppCompatActivity {
             if (cursor != null && cursor.moveToFirst()){
                 int indiceNumero = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 String numero = cursor.getString(indiceNumero);
-                numero = numero.replace("+593", "0").replace(" ", "");
+                //numero = numero.replace("+593", "0").replace(" ", "");
                 contactosModificar.setText(numero);
             }
         }
@@ -714,7 +717,7 @@ public class DetallesCobro extends AppCompatActivity {
             msgnohaynumero();
         }else{
             Intent sendintent = new Intent(Intent.ACTION_VIEW);
-            String uri = "whatsapp://send?phone=+593"+contactos+"&text="+mensaje;
+            String uri = "whatsapp://send?phone="+contactos+"&text="+mensaje;
             sendintent.setData(Uri.parse(uri));
             startActivity(sendintent);
         }

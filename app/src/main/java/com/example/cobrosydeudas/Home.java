@@ -81,26 +81,9 @@ public class Home extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                SQLiteDatabase db = conn.getReadableDatabase();
-                listapermiso = new ArrayList<>();
-                Permiso perm=null;
-                Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_PERMISO, null);
-                while (cursor.moveToNext()) {
-                    cursor.getString(cursor.getColumnIndex("clave"));
-                    listapermiso.add(perm);
-                }
-                db.close();
-                if (listapermiso.isEmpty()){
-                    Intent intent = new Intent(Home.this, DarPermiso.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
-                }else{
-                    Intent intent = new Intent(Home.this, Todos.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
-                    finish();
-                }
-                db.close();
+                Intent intent = new Intent(Home.this, Todos.class);
+                startActivity(intent);
+                finish();
             }
         }, 2500);
 
@@ -116,18 +99,27 @@ public class Home extends AppCompatActivity {
             String id;
             String fecha;
             String estado;
+            String estadoData;
             Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_COBRO, null);
             while (cursor.moveToNext()) {
                 id = cursor.getString(cursor.getColumnIndex("id"));
                 fecha = cursor.getString(cursor.getColumnIndex("fechacobro"));
+                estadoData = cursor.getString(cursor.getColumnIndex("estado"));
                 fecharegistrada = format.parse(fecha);
-                if (fecharegistrada.compareTo(fechaactual) <= 0){
-                    estado = "Vencido";
-                    actualizardatos(estado, id);
-                }else if (fecharegistrada.compareTo(fechaactual) > 0){
-                    estado = "Activo";
-                    actualizardatos(estado, id);
+
+                if (estadoData == "Eliminado"){
+
+                }else if (estadoData == "Vencido" || estadoData == "Activo"){
+                    if (fecharegistrada.compareTo(fechaactual) <= 0){
+                        estado = "Vencido";
+                        actualizardatos(estado, id);
+                    }else if (fecharegistrada.compareTo(fechaactual) > 0){
+                        estado = "Activo";
+                        actualizardatos(estado, id);
+                    }
                 }
+
+
             }
             db.close();
         } catch (ParseException e) {
