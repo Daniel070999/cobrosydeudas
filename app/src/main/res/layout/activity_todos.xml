@@ -7,7 +7,7 @@
     android:background="@color/principal"
     android:animateLayoutChanges="true"
     android:orientation="vertical"
-    tools:context=".Todos">
+    tools:context="appcyb.danielpativas.cobrosydeudas.Todos">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -16,81 +16,88 @@
         android:layout_height="wrap_content"
         android:background="@color/principal"
         android:theme="@style/Toolbartheme"
-        app:titleTextColor="@color/black">
-    </androidx.appcompat.widget.Toolbar>
+        app:titleTextColor="@color/black"></androidx.appcompat.widget.Toolbar>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-7969764617285750/7274605429"></com.google.android.gms.ads.AdView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnnuevocobro"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/atma_semibold"
-            style="?attr/materialButtonOutlinedStyle"
-            app:strokeColor="#2E86C1"
+            android:onClick="agregarnuevocobro"
             android:text="NUEVO COBRO"
-            android:layout_gravity="end"
             android:textColor="#2E86C1"
-            app:cornerRadius="20dp"
             android:textSize="10dp"
-            android:onClick="agregarnuevocobro"/>
+            app:cornerRadius="20dp"
+            app:strokeColor="#2E86C1" />
+
         <Button
             android:id="@+id/btnnuevadeuda"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:fontFamily="@font/atma_semibold"
-            style="?attr/materialButtonOutlinedStyle"
-            app:strokeColor="#1F618D"
+            android:onClick="agregarnuevadeuda"
             android:text="NUEVA DEUDA"
-            android:layout_gravity="end"
             android:textColor="#1F618D"
-            app:cornerRadius="20dp"
             android:textSize="10dp"
-            android:onClick="agregarnuevadeuda"/>
+            app:cornerRadius="20dp"
+            app:strokeColor="#1F618D" />
     </LinearLayout>
 
     <EditText
         android:id="@+id/txtbuscarcobros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Buscar"
-        android:drawablePadding="5dp"
-        android:drawableStart="@drawable/ic_search_person"
-        android:textSize="16sp"
-        android:background="@drawable/custom_input"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
         android:layout_marginHorizontal="15dp"
         android:layout_marginBottom="0dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_search_person"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="Buscar"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
         android:singleLine="true"
-        />
+        android:textSize="16sp" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewListacobros"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="1dp"
             android:layout_marginBottom="1dp" />
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

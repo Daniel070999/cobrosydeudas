@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Papelera"
+    tools:context="appcyb.danielpativas.cobrosydeudas.Papelera"
     android:orientation="vertical">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobarpapelera"
@@ -14,6 +14,16 @@
         android:theme="@style/Toolbartheme"
         app:titleTextColor="@color/black">
     </androidx.appcompat.widget.Toolbar>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adViewPapelera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-7969764617285750/4230473831">
+    </com.google.android.gms.ads.AdView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewListapapelera"
         android:layout_width="match_parent"

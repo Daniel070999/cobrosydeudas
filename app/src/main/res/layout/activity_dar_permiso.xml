@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="50dp"
-    tools:context=".DarPermiso">
+    tools:context="appcyb.danielpativas.cobrosydeudas.DarPermiso">
 
     <TextView
         android:id="@+id/txtclavepermiso"

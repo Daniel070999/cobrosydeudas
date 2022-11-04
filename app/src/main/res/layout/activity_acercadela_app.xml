@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AcercadelaApp">
+    tools:context="appcyb.danielpativas.cobrosydeudas.AcercadelaApp">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbaracercade"
         android:layout_width="match_parent"
@@ -54,6 +54,15 @@ la fecha fijada o si se encuentra en la papelera de reciclaje.
  \n - Genera un reporte del Cobro o Deuda detallando 'Fecha', 'Pago o Registro' y
 'Descripción'."
         android:textColor="@color/black"/>
-
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adViewAcerca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
 
 </LinearLayout>

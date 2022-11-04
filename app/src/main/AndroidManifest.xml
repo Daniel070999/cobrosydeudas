@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.cobrosydeudas" >
+    package="appcyb.danielpativas.cobrosydeudas" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_update"
+        android:icon="@drawable/icono_app"
         android:label="Cobros y Deudas"
         android:roundIcon="@mipmap/ic_iconodos_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cobrosydeudas"
         android:requestLegacyExternalStorage="true">
+        <!--anuncion de ad mob-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7969764617285750~8071885614"/>
 
         <activity android:name=".DarPermiso" />
         <activity
-            android:name=".Home" >
+            android:name=".Home"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +31,8 @@
         </activity>
         <activity
             android:name=".Todos"
-            android:label="COBROS Y DEUDAS" >
+            android:label="COBROS Y DEUDAS"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.Todos" />
 
@@ -36,7 +42,8 @@
         <activity
             android:name=".DetallesCobro"
             android:label="DETALLES DEL COBRO"
-            android:parentActivityName=".Todos" >
+            android:parentActivityName=".Todos"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Todos" />
@@ -50,7 +57,8 @@
         <activity
             android:name=".SoloDeudas"
             android:label="SOLO DEUDAS"
-            android:parentActivityName=".Todos" >
+            android:parentActivityName=".Todos"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Todos" />
@@ -64,7 +72,8 @@
         <activity
             android:name=".Papelera"
             android:label="PAPELERA"
-            android:parentActivityName=".Todos" >
+            android:parentActivityName=".Todos"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Todos" />
@@ -78,7 +87,8 @@
         <activity
             android:name=".SoloCobros"
             android:label="SOLO COBROS"
-            android:parentActivityName=".Todos" >
+            android:parentActivityName=".Todos"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Todos" />
@@ -92,7 +102,8 @@
         <activity
             android:name=".Importar_exportar"
             android:label="IMPORTAR/EXPORTAR"
-            android:parentActivityName=".Todos" >
+            android:parentActivityName=".Todos"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Todos" />
@@ -107,7 +118,8 @@
         <activity
             android:name=".AcercadelaApp"
             android:label="ACERCA DE LA APLICACIÓN"
-            android:parentActivityName=".Todos" >
+            android:parentActivityName=".Todos"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Todos" />
@@ -121,7 +133,8 @@
         <activity
             android:name=".Datos"
             android:label="DATOS"
-            android:parentActivityName=".Todos" >
+            android:parentActivityName=".Todos"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Todos" />

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SoloCobros">
+    tools:context="appcyb.danielpativas.cobrosydeudas.SoloCobros">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarsolocobros"
@@ -15,6 +15,16 @@
         android:theme="@style/Toolbartheme"
         app:titleTextColor="@color/black">
     </androidx.appcompat.widget.Toolbar>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adViewSoloCobros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-7969764617285750/3295831963">
+    </com.google.android.gms.ads.AdView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
