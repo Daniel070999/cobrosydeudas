@@ -83,10 +83,7 @@ public class Home extends AppCompatActivity {
                 fecha = cursor.getString(cursor.getColumnIndex("fechacobro"));
                 estadoData = cursor.getString(cursor.getColumnIndex("estado"));
                 fecharegistrada = format.parse(fecha);
-
-                if (estadoData == "Eliminado"){
-
-                }else if (estadoData == "Vencido" || estadoData == "Activo"){
+                if ((estadoData.contains("Vencido")) || (estadoData.contains("Activo"))){
                     if (fecharegistrada.compareTo(fechaactual) <= 0){
                         estado = "Vencido";
                         actualizardatos(estado, id);
@@ -94,6 +91,8 @@ public class Home extends AppCompatActivity {
                         estado = "Activo";
                         actualizardatos(estado, id);
                     }
+                }else if (estadoData.contains("Eliminado")){
+
                 }
 
 

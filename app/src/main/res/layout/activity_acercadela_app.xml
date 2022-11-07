@@ -6,63 +6,132 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="appcyb.danielpativas.cobrosydeudas.AcercadelaApp">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbaracercade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/principal"
         android:theme="@style/Toolbartheme"
-        app:titleTextColor="@color/black">
-    </androidx.appcompat.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/tesxtView8a"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textAlignment="gravity"
-        android:text="COBROS Y DEUDAS"
-        android:fontFamily="@font/atma_semibold"
-        android:textColor="@color/black"/>
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:justificationMode="inter_word"
-        android:text="
-la aplicación cuenta con diferentes acciones posibles, entre ellas están:
- \n - Estado 'Activo', 'Vencido' o 'Eliminado' dependiendo de
-la fecha fijada o si se encuentra en la papelera de reciclaje.
-\n
- \n - Realiza copias de seguridad de forma local.\n
- \n - Buscar por nombre o apellido.\n
- \n - Lista Todos lo registros por defecto, no obstante si se desea
- se podrá listar Solo Cobros o Solo Deudas.\n
- \n - Agregar un número de teléfono del Cobro o Deuda.\n
- \n - Enviar mensaje de WhatsApp.\n
- \n - Realizar llamadas con costos adiconales dependiendo de su operadora.\n
- \n - Modificar datos de un Cobro o Deuda.\n
- \n - Aumentar cantidad de dinero.\n
- \n - Registrar un pago de dinero.\n
- \n - En caso de eliminar un Cobro o Deuda se mantendran en la parte de
-'Papelera' hasta que sean eliminados definitivamente.\n
- \n - En caso de eliminar definitivamente un Cobro o Deuda,
- se eliminará con todos los datos y registros.\n
- \n - Genera un reporte del Cobro o Deuda detallando 'Fecha', 'Pago o Registro' y
-'Descripción'."
-        android:textColor="@color/black"/>
+        app:titleTextColor="@color/black"></androidx.appcompat.widget.Toolbar>
     <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adViewAcerca"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-7969764617285750/8979403480">
+
     </com.google.android.gms.ads.AdView>
+    <TextView
+        android:id="@+id/tesxtView8a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/atma_semibold"
+        android:text="COBROS Y DEUDAS"
+        android:textAlignment="gravity"
+        android:textColor="@color/black" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:justificationMode="inter_word"
+                android:text="
+la aplicación cuenta con diferentes acciones posibles, entre ellas están:
+\n\n
+- Estado 'Activo', 'Vencido' o 'Eliminado' dependiendo de la fecha fijada o si se encuentra en la papelera de reciclaje.
+\n\n
+- Realiza copias de seguridad de forma local.
+\n\n
+- Buscar por nombre o apellido.
+\n\n
+- Lista Todos lo registros por defecto, no obstante si se desea se podrá listar Solo Cobros o Solo Deudas.
+\n\n
+- Agregar un número de teléfono del Cobro o Deuda.
+\n\n
+- Enviar mensaje de WhatsApp.
+\n\n
+- Realizar llamadas con costos adiconales dependiendo de su operadora.
+\n\n
+- Modificar datos de un Cobro o Deuda.
+\n\n
+- Aumentar cantidad de dinero.
+\n\n
+- Registrar un pago de dinero.
+\n\n
+- En caso de eliminar un Cobro o Deuda se mantendran en la parte de 'Papelera' hasta que sean eliminados definitivamente.
+\n\n
+- En caso de eliminar definitivamente un Cobro o Deuda, se eliminará con todos los datos y registros.
+\n\n
+- Genera un reporte del Cobro o Deuda detallando 'Fecha', 'Pago o Registro' y 'Descripción'."
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:justificationMode="inter_word"
+                android:text="
+En caso de encontrar fallas en la aplicación, con el propósito de evitar bajas calificaciones en la tienda de GOOGLE PLAY, por favor, enviar su comentario por correo electrónico."
+                android:textColor="@color/black" />
+            <Button
+                android:id="@+id/btnenviarcorreo"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/atma_semibold"
+                android:onClick="enviarcorreo"
+                android:text="Notificar por correo"
+                android:textColor="#F14A4A"
+                android:textSize="11sp"
+                app:cornerRadius="20dp"
+                app:strokeColor="#ED5050" />
+            <Button
+                android:id="@+id/btncalificarApp"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/atma_semibold"
+                android:onClick="btnclicCalificarApp"
+                android:text="Calificar positivamente en Google Play"
+                android:textColor="#5CA30B"
+                android:textSize="11sp"
+                app:cornerRadius="20dp"
+                app:strokeColor="#4B8804" />
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
 
 </LinearLayout>

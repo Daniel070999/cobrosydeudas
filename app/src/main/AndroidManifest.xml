@@ -5,9 +5,11 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:icon="@drawable/icono_app"
         android:label="Cobros y Deudas"
         android:roundIcon="@mipmap/ic_iconodos_app"
@@ -19,7 +21,6 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7969764617285750~8071885614"/>
 
-        <activity android:name=".DarPermiso" />
         <activity
             android:name=".Home"
             android:exported="true">

@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:paddingBottom="25dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -103,4 +104,12 @@
 
     </LinearLayout>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewVerDatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="LARGE_BANNER"
+        app:adUnitId="ca-app-pub-7969764617285750/8044637904"></com.google.android.gms.ads.AdView>
 </LinearLayout>

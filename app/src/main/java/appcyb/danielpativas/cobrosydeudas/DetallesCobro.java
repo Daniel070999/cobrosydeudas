@@ -813,7 +813,7 @@ public class DetallesCobro extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
             }
-        }, 1500);
+        }, 6000);
     }
     private void modificardatoscobroSQLITE(String nombre, String apellido, String calendario, String cantidad, String descripcion, String contacto) {
         try {
@@ -941,7 +941,6 @@ public class DetallesCobro extends AppCompatActivity {
             arrayListAccionPDF.add(usuario.getAccionregistro());
         }
 
-        System.out.println(arrayListFechaPDF);
 
         Bitmap bitmap, bitmapEscala;
 
@@ -1113,7 +1112,6 @@ public class DetallesCobro extends AppCompatActivity {
             pdfDocument.writeTo(new FileOutputStream(file));
             pdfDocument.close();
         }catch (Exception e){
-            System.out.println("error"+e);
         }
 
 

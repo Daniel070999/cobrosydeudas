@@ -85,12 +85,19 @@ public class AcercadelaApp extends AppCompatActivity {
     public void enviarcorreo(View view) {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setData(Uri.parse("email"));
-        String[] s={"danielixo99@gmail.com"};
+        String[] s={"danielixo99dev@gmail.com"};
         i.putExtra(Intent.EXTRA_EMAIL,s);
         i.putExtra(Intent.EXTRA_SUBJECT,"App Ccobros y Deudas");
         i.putExtra(Intent.EXTRA_TEXT,"Acerca de la app:");
         i.setType("message/rfc822");
         Intent chooser = Intent.createChooser(i,"Launch Email");
         startActivity(chooser);
+    }
+
+    public void btnclicCalificarApp(View view) {
+        String url =  "https://play.google.com/store/apps/details?id=appcyb.danielpativas.cobrosydeudas";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }

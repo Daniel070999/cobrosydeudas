@@ -40,6 +40,7 @@ import com.thecode.aestheticdialogs.DialogType;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -227,6 +228,8 @@ public class Importar_exportar extends AppCompatActivity {
 
 
     public void exportarSCV() {
+
+
         File carpeta = new File(getExternalFilesDir(null), "/DatosCobrosyDeudas");
         String cobrosydeudas = carpeta.toString() + "/" + "datoscobrosydeudas.csv";
         String registros = carpeta.toString() + "/" + "datosregistros.csv";

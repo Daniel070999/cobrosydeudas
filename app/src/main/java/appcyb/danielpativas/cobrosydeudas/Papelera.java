@@ -309,7 +309,7 @@ public class Papelera extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        },2000);
+        },6000);
     }
     public void eliminarCobro(Integer idcobro){
 
@@ -341,7 +341,7 @@ public class Papelera extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
             }
-        },2000);
+        },6000);
 
 
 
