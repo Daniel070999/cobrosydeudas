@@ -477,12 +477,6 @@ public class DetallesCobro extends AppCompatActivity {
                         Toast.makeText(DetallesCobro.this, "error" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     bottomSheetDialog.dismiss();
-                    //anuncio interstician
-                    if (mInterstitialAd != null) {
-                        mInterstitialAd.show(DetallesCobro.this);
-                    } else {
-                        Log.d("TAG", "The interstitial ad wasn't ready yet.");
-                    }
                 }
             }
         });
@@ -491,12 +485,6 @@ public class DetallesCobro extends AppCompatActivity {
             public void onClick(View v) {
                 msgcancelar();
                 bottomSheetDialog.dismiss();
-                //anuncio interstician
-                if (mInterstitialAd != null) {
-                    mInterstitialAd.show(DetallesCobro.this);
-                } else {
-                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
-                }
             }
         });
         bottomSheetDialog.setContentView(bottomSheetView);
@@ -613,12 +601,6 @@ public class DetallesCobro extends AppCompatActivity {
                         Toast.makeText(DetallesCobro.this, "error" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     bottomSheetDialog.dismiss();
-                    //anuncio interstician
-                    if (mInterstitialAd != null) {
-                        mInterstitialAd.show(DetallesCobro.this);
-                    } else {
-                        Log.d("TAG", "The interstitial ad wasn't ready yet.");
-                    }
                 }
             }
         });
@@ -627,12 +609,6 @@ public class DetallesCobro extends AppCompatActivity {
             public void onClick(View v) {
                 msgcancelar();
                 bottomSheetDialog.dismiss();
-                //anuncio interstician
-                if (mInterstitialAd != null) {
-                    mInterstitialAd.show(DetallesCobro.this);
-                } else {
-                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
-                }
             }
         });
         bottomSheetDialog.setContentView(bottomSheetView);

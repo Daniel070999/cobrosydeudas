@@ -18,16 +18,23 @@
         android:theme="@style/Toolbartheme"
         app:titleTextColor="@color/black"></androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+    <EditText
+        android:id="@+id/txtbuscarcobros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-7969764617285750/7274605429">
-
-    </com.google.android.gms.ads.AdView>
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_search_person"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="Buscar"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
+        android:singleLine="true"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,39 +76,42 @@
             app:strokeColor="#1F618D" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/txtbuscarcobros"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginBottom="0dp"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/ic_search_person"
-        android:drawablePadding="5dp"
-        android:ems="10"
-        android:hint="Buscar"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="8dp"
-        android:singleLine="true"
-        android:textSize="16sp" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerviewListacobros"
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewListacobros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="8dp"
+                android:paddingBottom="50dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="1dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="1dp" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_gravity="bottom"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-7969764617285750/7274605429"/>
 
+    </FrameLayout>
 
 
 </LinearLayout>
